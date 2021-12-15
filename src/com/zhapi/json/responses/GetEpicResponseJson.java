@@ -19,6 +19,8 @@ package com.zhapi.json.responses;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zhapi.json.AbstractJson;
 import com.zhapi.json.EstimateJson;
 import com.zhapi.json.GetEpicIssueEntryJson;
@@ -28,12 +30,31 @@ import com.zhapi.json.PipelineJson;
  * Returned by the EpicsService class. Serializes to/from JSON, from the ZenHub
  * API.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GetEpicResponseJson extends AbstractJson {
+	private int issue_number;
+	private long repo_id;
 	private EstimateJson total_epic_estimates;
 	private EstimateJson estimate;
 	private PipelineJson pipeline;
 	private List<PipelineJson> pipelines = new ArrayList<>();
 	private List<GetEpicIssueEntryJson> issues = new ArrayList<>();
+
+	public int getIssue_number() {
+		return issue_number;
+	}
+
+	public void setIssue_number(int issue_number) {
+		this.issue_number = issue_number;
+	}
+
+	public long getRepo_id() {
+		return repo_id;
+	}
+
+	public void setRepo_id(long repo_id) {
+		this.repo_id = repo_id;
+	}
 
 	public EstimateJson getTotal_epic_estimates() {
 		return total_epic_estimates;
